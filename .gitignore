@@ -8,7 +8,7 @@ platforms/
 /typings
 */.vscode
 */target/**
-*/.idea/**
+/.idea/
 */.tmp/**
 */.settings/**
 */.classpath

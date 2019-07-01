@@ -1,17 +1,15 @@
 package br.com.unb.zoo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Entity
 public class Endereco {
 
@@ -34,4 +32,14 @@ public class Endereco {
 
     @Column(name = "uf")
     private String uf;
+
+    @OneToMany(mappedBy = "endereco")
+    @JsonIgnore
+    private List<Fornecedores> fornecedores;
+
+    @OneToMany(mappedBy = "endereco")
+    @JsonIgnore
+    private List<Funcionarios> funcionarios;
+
+
 }

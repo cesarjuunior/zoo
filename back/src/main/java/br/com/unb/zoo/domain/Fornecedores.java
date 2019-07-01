@@ -1,16 +1,17 @@
 package br.com.unb.zoo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Entity
-public class Fornecedores {
+public class Fornecedores{
     @Id
     @Column(name = "id")
     @GeneratedValue
@@ -21,5 +22,8 @@ public class Fornecedores {
 
     @ManyToOne
     private Endereco endereco;
+
+    @OneToMany(mappedBy = "fornecedor",cascade = CascadeType.ALL)
+    private List<Alimento> alimento;
 
 }

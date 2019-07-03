@@ -1,0 +1,17 @@
+<p-panel header="Listar todos os alimentos" [toggleable]="true">
+  <div class="ui-g">
+    <p-table [value]="cars">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Nome</th>
+          <th>Fornecedor</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-car>
+        <tr>
+          <td>{{car.vin}}</td>
+          <td>{{car.year}}</td>
+      </ng-template>
+    </p-table>
+  </div>
+</p-panel>

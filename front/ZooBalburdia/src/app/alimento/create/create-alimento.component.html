@@ -1,0 +1,17 @@
+<p-panel header="Adicionar um novo alimento" [toggleable]="true">
+  <div class="ui-g">
+    <div class="ui-g-3">
+      <div>
+        <label><b>Nome</b></label>
+      </div>
+      <input type="text" pInputText/>
+    </div>
+    <div class="ui-g-3">
+      <div>
+        <label><b>Fornecedores</b></label>
+      </div>
+      <p-dropdown [options]="cities" [(ngModel)]="selectedCity" placeholder="Selecione" optionLabel="name"
+                  [showClear]="true"></p-dropdown>
+    </div>
+  </div>
+</p-panel>

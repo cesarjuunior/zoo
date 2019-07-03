@@ -1,0 +1,86 @@
+<p-panel header="Crie um funcionário" [toggleable]="true">
+  <div class="ui-g">
+    <div class="ui-g-3">
+      <div>
+        <label style="font-size: 15px" ><b>Nome</b></label>
+      </div>
+      <input type="text" pInputText/>
+    </div>
+
+    <div class="ui-g-3">
+      <div>
+        <label style="font-size: 15px" ><b>Formação</b></label>
+      </div>
+      <input type="text" pInputText/>
+    </div>
+
+    <div class="ui-g-3">
+      <div>
+        <label><b>Cargo exercido</b></label>
+      </div>
+      <p-dropdown [options]="cities" [(ngModel)]="selectedCity" placeholder="Selecione o cargo exercido" optionLabel="name"
+                  [showClear]="true"></p-dropdown>
+    </div>
+
+    <div class="ui-g-3">
+      <div>
+        <label style="font-size: 15px" ><b>RG</b></label>
+      </div>
+      <input type="text" pInputText/>
+    </div>
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-3">
+      <div>
+        <label style="font-size: 15px"><b>CPF </b></label>
+      </div>
+      <p-inputMask [(ngModel)]="val" mask="999.999.999-99"></p-inputMask>
+    </div>
+    <div class="ui-g-3">
+      <div>
+        <label style="font-size: 15px"><b>CRMV</b></label>
+      </div>
+      <input type="text" pInputText/>
+    </div>
+    <div class="ui-g-3">
+      <div>
+        <label style="font-size: 15px"><b>Data de nascimento</b></label>
+      </div>
+      <p-calendar [(ngModel)]="value" dateFormat="dd/mm/yy"></p-calendar>
+    </div>
+    <div class="ui-g-3">
+      <div>
+        <label style="font-size: 15px"><b>CEP</b></label>
+      </div>
+      <input type="text" pInputText/>
+    </div>
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-3">
+      <div>
+        <label style="font-size: 15px"><b>Número</b></label>
+      </div>
+      <input type="text" pInputText/>
+    </div>
+    <div class="ui-g-3">
+      <div>
+        <label style="font-size: 15px"><b>Rua</b></label>
+      </div>
+      <input type="text" pInputText/>
+    </div>
+    <div class="ui-g-3">
+      <div>
+        <label style="font-size: 15px"><b>Bairro</b></label>
+      </div>
+      <input type="text" pInputText/>
+    </div>
+    <div class="ui-g-3">
+      <div>
+        <label style="font-size: 15px"><b>UF</b></label>
+      </div>
+      <input type="text" pInputText/>
+    </div>
+  </div>
+</p-panel>

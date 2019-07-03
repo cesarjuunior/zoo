@@ -10,6 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Entity
+@Table(name = "alimento", schema = "zoo")
 public class Alimento {
     @Id
     @Column(name = "id")
@@ -20,6 +21,7 @@ public class Alimento {
     private String nome;
 
     @ManyToOne
-    private Fornecedores fornededor;
+    @JoinColumn(name = "fornecedor")
+    private Fornecedores fornecedor;
 
 }

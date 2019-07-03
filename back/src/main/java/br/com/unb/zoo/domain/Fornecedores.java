@@ -11,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "fornecedores", schema = "zoo")
 public class Fornecedores{
     @Id
     @Column(name = "id")
@@ -21,9 +22,11 @@ public class Fornecedores{
     private String nome;
 
     @ManyToOne
+    @JoinColumn(name = "endereco")
     private Endereco endereco;
 
     @OneToMany(mappedBy = "fornecedor",cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Alimento> alimento;
 
 }

@@ -22,9 +22,7 @@ public class AlimentoController {
 
     @GetMapping(path = {"/{id}"})
     public ResponseEntity findById(@PathVariable Long id){
-        return  repository.findById(id)
-                .map(record -> ResponseEntity.ok().body(record))
-                .orElse(ResponseEntity.notFound().build());
+         return ResponseEntity.ok().body(repository.buscarPorId(id));
 
     }
 

@@ -12,6 +12,11 @@ import java.util.List;
 @Repository
 public interface AlimentoRepository extends JpaRepository<Alimento, Long> {
 
-    @Query(value = "SELECT * from zoo.alimento", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT * from zoo.alimento", nativeQuery = true)
     List<Alimento> buscarTodos();
+
+    @Query(value = "select distinct * from zoo.alimento as a WHERE a.id = :id", nativeQuery = true)
+    Alimento buscarPorId(@Param("id") Long id);
+
+
 }

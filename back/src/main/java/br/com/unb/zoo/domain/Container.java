@@ -10,6 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Entity
+@Table(name = "container", schema = "zoo")
 public class Container {
     @Id
     @Column(name = "id")
@@ -20,5 +21,6 @@ public class Container {
     private String tipo;
 
     @ManyToOne
+    @JoinColumn(name = "ala")
     private Ala ala;
 }

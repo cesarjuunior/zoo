@@ -11,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "endereco", schema = "zoo")
 public class Endereco {
 
     @Id
@@ -18,7 +19,7 @@ public class Endereco {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "nome")
+    @Column(name = "rua")
     private String rua;
 
     @Column(name = "numero")

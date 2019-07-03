@@ -10,6 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Entity
+@Table(name = "cargo", schema = "zoo")
 public class Cargo {
 
     @Id

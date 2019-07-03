@@ -2,10 +2,7 @@ package br.com.unb.zoo.domain;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -13,6 +10,7 @@ import javax.persistence.OneToOne;
 @NoArgsConstructor
 @Data
 @Entity
+@Table(name = "ala", schema = "zoo")
 public class Ala {
 
     @Id
@@ -20,6 +18,7 @@ public class Ala {
     private Long numAla;
 
     @OneToOne
+    @JoinColumn(name = "classe")
     private Classe classe;
 
 }

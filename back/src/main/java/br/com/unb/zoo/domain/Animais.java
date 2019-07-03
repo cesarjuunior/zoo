@@ -3,6 +3,7 @@ package br.com.unb.zoo.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.sql.Blob;
 
 @Getter
 @Setter
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Entity
+@Table(name = "animais", schema = "zoo")
 public class Animais {
 
     @Id
@@ -21,12 +23,15 @@ public class Animais {
     private String nome;
 
     @ManyToOne
+    @JoinColumn(name="classe")
     private Classe classe;
 
     @ManyToOne
+    @JoinColumn(name = "alimento")
     private Alimento alimento;
 
     @ManyToOne
+    @JoinColumn(name = "container")
     private Container container;
 
     @Column(name="especie")
@@ -39,5 +44,9 @@ public class Animais {
     private String peso;
 
     @ManyToOne
+    @JoinColumn(name = "responsavel")
     private Funcionarios responsavel;
+
+    @Column(name = "foto_animal")
+    private Byte[] fotoAnimal;
 }

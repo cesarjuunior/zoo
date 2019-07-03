@@ -11,6 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Data
 @Entity
+@Table(name = "consulta", schema = "zoo")
 public class Consulta {
     @Id
     @Column(name = "id")
@@ -21,9 +22,11 @@ public class Consulta {
     private Date data;
 
     @ManyToOne
+    @JoinColumn(name = "funcionario")
     private Funcionarios funcionario;
 
     @ManyToOne
+    @JoinColumn(name = "animal")
     private Animais animal;
 
 }

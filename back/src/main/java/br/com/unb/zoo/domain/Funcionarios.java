@@ -11,6 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Data
 @Entity
+@Table(name = "funcionarios", schema = "zoo")
 public class Funcionarios {
 
     @Id
@@ -24,6 +25,7 @@ public class Funcionarios {
     private String escolaridade;
 
     @ManyToOne
+    @JoinColumn(name = "cargo")
     private Cargo cargo;
 
     @Column(name="rg")
@@ -36,6 +38,7 @@ public class Funcionarios {
     private String crmv;
 
     @ManyToOne
+    @JoinColumn(name = "endereco")
     private Endereco endereco;
 
     @Column(name="data_nascimento")

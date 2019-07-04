@@ -1,5 +1,7 @@
 // @ts-ignore
 import { Component, OnInit } from '@angular/core';
+import {Animal} from '../animal';
+import {ApiService} from '../api.service';
 
 interface City {
   name: string,
@@ -13,7 +15,9 @@ interface City {
 })
 export class CreateAnimalComponent implements OnInit {
 
-  constructor() {
+  animal: Animal = new Animal();
+
+  constructor(private apiService: ApiService ) {
     this.cities = [
       {name: 'New York', code: 'NY'},
       {name: 'Rome', code: 'RM'},
@@ -31,4 +35,20 @@ export class CreateAnimalComponent implements OnInit {
   ngOnInit() {
   }
 
+  salvar() {
+    console.log('CHEGOU AQUI');
+    this.apiService.getAnimais();
+  }
+
+  editar() {
+
+  }
+
+  excluir() {
+
+  }
+
+  deletar() {
+
+  }
 }

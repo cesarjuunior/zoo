@@ -4,27 +4,28 @@
       <div>
         <label style="font-size: 15px"><b>Nome</b></label>
       </div>
-      <input type="text" pInputText/>
+      <input type="text" [(ngModel)]="animal.nome" pInputText/>
     </div>
     <div class="ui-g-3">
       <div>
         <label style="font-size: 15px"><b>Espécie</b></label>
       </div>
-      <input type="text" pInputText/>
+      <input type="text" [(ngModel)]="animal.especie" pInputText/>
     </div>
     <div class="ui-g-3">
       <div>
         <label style="font-size: 15px"><b>Altura</b></label>
       </div>
-      <input type="text" pInputText/>
+      <input type="text" [(ngModel)]="animal.altura" pInputText/>
     </div>
     <div class="ui-g-3">
       <div>
         <label style="font-size: 15px"><b>Peso</b></label>
       </div>
-      <input type="text" pInputText/>
+      <input type="text" [(ngModel)]="animal.peso" pInputText/>
     </div>
   </div>
+
   <div class="ui-g">
     <div class="ui-g-3">
       <div>
@@ -64,6 +65,11 @@
                     optionLabel="name"
                     [showClear]="true"></p-dropdown>
       </div>
+    </div>
+  </div>
+  <div class="ui-g">
+    <div class="ui-g-3">
+      <button pButton type="button" label="Salvar" class="ui-button-success" (click)="salvar()"></button>
     </div>
   </div>
 

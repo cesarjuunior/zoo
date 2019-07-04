@@ -14,7 +14,6 @@ import javax.persistence.*;
 public class Alimento {
     @Id
     @Column(name = "id")
-    @GeneratedValue
     private Long id;
 
     @Column(name="nome")

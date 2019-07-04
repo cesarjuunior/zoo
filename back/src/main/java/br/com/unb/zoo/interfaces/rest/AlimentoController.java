@@ -27,8 +27,11 @@ public class AlimentoController {
     }
 
     @PostMapping
-    public Alimento create(@RequestBody Alimento alimento){
-        return repository.save(alimento);
+    public void create(@RequestBody Alimento alimento){
+        List <Alimento> alimentos = findAll();
+        long id = alimentos.size() + 1;
+        alimento.setId(id);
+        repository.salvar(alimento.getId(), alimento.getFornecedor().getId(), alimento.getNome());
     }
 
     @PutMapping(value = "/{id}")
@@ -43,11 +46,7 @@ public class AlimentoController {
     }
 
     @DeleteMapping(path ={"/{id}"})
-    public ResponseEntity<?> delete(@PathVariable long id) {
-        return repository.findById(id)
-                .map(record -> {
-                    repository.deleteById(id);
-                    return ResponseEntity.ok().build();
-                }).orElse(ResponseEntity.notFound().build());
+    public void delete(@PathVariable Long id) {
+        repository.excluir(id);
     }
 }

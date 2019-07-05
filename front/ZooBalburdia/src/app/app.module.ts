@@ -39,7 +39,7 @@ import {DeleteFuncionariosComponent} from "./funcionarios/delete/delete-funciona
 import {FormsModule} from "@angular/forms";
 import {TableModule} from "primeng/table";
 import {HttpClientModule} from '@angular/common/http';
-import {ApiService} from './animais/api.service';
+import {ApiService} from './service/api.service';
 
 
 @NgModule({

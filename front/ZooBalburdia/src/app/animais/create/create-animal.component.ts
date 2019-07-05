@@ -1,7 +1,7 @@
 // @ts-ignore
 import { Component, OnInit } from '@angular/core';
 import {Animal} from '../animal';
-import {ApiService} from '../api.service';
+import {ApiService} from '../../service/api.service';
 
 interface City {
   name: string,
@@ -37,18 +37,6 @@ export class CreateAnimalComponent implements OnInit {
 
   salvar() {
     console.log('CHEGOU AQUI');
-    this.apiService.getAnimais();
-  }
-
-  editar() {
-
-  }
-
-  excluir() {
-
-  }
-
-  deletar() {
-
+    this.apiService.adicionaAnimal(this.animal).subscribe();
   }
 }

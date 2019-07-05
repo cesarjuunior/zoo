@@ -1,6 +1,6 @@
 <p-panel header="Excluir um amiguinho" [toggleable]="true">
   <div class="ui-g">
-    <p-table [value]="cars">
+    <p-table>
       <ng-template pTemplate="header">
         <tr>
           <th>Nome</th>
@@ -11,18 +11,20 @@
           <th>Container</th>
           <th>Classe</th>
           <th>Responsável</th>
+          <th>Ações</th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-car>
+      <ng-template pTemplate="body">
         <tr>
-          <td>{{car.vin}}</td>
-          <td>{{car.year}}</td>
-          <td>{{car.brand}}</td>
-          <td>{{car.color}}</td>
-          <td>{{car.color}}</td>
-          <td>{{car.color}}</td>
-          <td>{{car.color}}</td>
-          <td>{{car.color}}</td>
+          <td>Teste</td>
+          <td>Teste</td>
+          <td>Teste</td>
+          <td>Teste</td>
+          <td>Teste</td>
+          <td>Teste</td>
+          <td>Teste</td>
+          <td>Teste</td>
+          <td>Teste</td>
         </tr>
       </ng-template>
     </p-table>

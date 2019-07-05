@@ -1,5 +1,6 @@
 // @ts-ignore
 import { Component, OnInit } from '@angular/core';
+import {ApiService} from "../../service/api.service";
 
 export interface Car {
   vin;
@@ -19,7 +20,7 @@ export class ListAnimalComponent implements OnInit {
 
   cols: any[];
 
-  constructor() {
+  constructor(private apiService: ApiService) {
 
     this.cols = [
       { field: 'vin', header: 'Vin' },
@@ -32,4 +33,7 @@ export class ListAnimalComponent implements OnInit {
   ngOnInit() {
   }
 
+  listarAnimais(){
+    this.apiService.getAnimais().subscribe();
+  }
 }

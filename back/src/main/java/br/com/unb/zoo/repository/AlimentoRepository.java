@@ -25,7 +25,8 @@ public interface AlimentoRepository extends JpaRepository<Alimento, Long> {
     void salvar(@Param("id") Long id, @Param("idFornecedor") Long idFornecedor, @Param("nome") String nome);
 
     @Modifying
-    @Query(value = "DELETE FROM zoo.animais WHERE id = :id;", nativeQuery = true)
+    @Transactional
+    @Query(value = "DELETE FROM zoo.alimento WHERE id = :id", nativeQuery = true)
     void excluir(@Param("id") Long id);
 
     @Modifying

@@ -178,24 +178,12 @@ CREATE TABLE zoo.animais (
     especie character varying,
     altura character varying,
     peso character varying,
-    responsavel bigint
+    responsavel bigint,
+    foto_animal bytea
 );
 
 
 ALTER TABLE zoo.animais OWNER TO postgres;
-
---
--- Name: cargo; Type: TABLE; Schema: zoo; Owner: postgres
---
-
-CREATE TABLE zoo.cargo (
-    id bigint NOT NULL,
-    nome_cargo character varying,
-    salario integer
-);
-
-
-ALTER TABLE zoo.cargo OWNER TO postgres;
 
 --
 -- Name: classe; Type: TABLE; Schema: zoo; Owner: postgres
@@ -209,6 +197,34 @@ CREATE TABLE zoo.classe (
 
 
 ALTER TABLE zoo.classe OWNER TO postgres;
+
+--
+-- Name: aves; Type: VIEW; Schema: zoo; Owner: postgres
+--
+
+CREATE VIEW zoo.aves AS
+ SELECT a.nome,
+    ala.num_ala
+   FROM ((zoo.animais a
+     JOIN zoo.classe c ON ((c.id = a.classe)))
+     JOIN zoo.ala ala ON ((ala.classe = c.id)))
+  WHERE ((c.nome_da_classe)::text ~~* 'Aves'::text);
+
+
+ALTER TABLE zoo.aves OWNER TO postgres;
+
+--
+-- Name: cargo; Type: TABLE; Schema: zoo; Owner: postgres
+--
+
+CREATE TABLE zoo.cargo (
+    id bigint NOT NULL,
+    nome_cargo character varying,
+    salario integer
+);
+
+
+ALTER TABLE zoo.cargo OWNER TO postgres;
 
 --
 -- Name: consulta; Type: TABLE; Schema: zoo; Owner: postgres
@@ -260,7 +276,7 @@ ALTER TABLE zoo.endereco OWNER TO postgres;
 CREATE TABLE zoo.fornecedores (
     id bigint NOT NULL,
     nome character varying,
-    endereco character varying
+    endereco bigint
 );
 
 
@@ -273,7 +289,7 @@ ALTER TABLE zoo.fornecedores OWNER TO postgres;
 CREATE TABLE zoo.funcionarios (
     matricula bigint NOT NULL,
     nome character varying,
-    formacao character varying,
+    escolaridade character varying,
     cargo bigint NOT NULL,
     rg character varying,
     cpf character varying,
@@ -299,10 +315,56 @@ CREATE TABLE zoo.limpeza (
 ALTER TABLE zoo.limpeza OWNER TO postgres;
 
 --
+-- Name: mamiferos; Type: VIEW; Schema: zoo; Owner: postgres
+--
+
+CREATE VIEW zoo.mamiferos AS
+ SELECT a.nome,
+    ala.num_ala
+   FROM ((zoo.animais a
+     JOIN zoo.classe c ON ((c.id = a.classe)))
+     JOIN zoo.ala ala ON ((ala.classe = c.id)))
+  WHERE ((c.nome_da_classe)::text ~~* 'Mamifero'::text);
+
+
+ALTER TABLE zoo.mamiferos OWNER TO postgres;
+
+--
+-- Name: peixes; Type: VIEW; Schema: zoo; Owner: postgres
+--
+
+CREATE VIEW zoo.peixes AS
+ SELECT a.nome,
+    ala.num_ala
+   FROM ((zoo.animais a
+     JOIN zoo.classe c ON ((c.id = a.classe)))
+     JOIN zoo.ala ala ON ((ala.classe = c.id)))
+  WHERE ((c.nome_da_classe)::text ~~* 'Peixes'::text);
+
+
+ALTER TABLE zoo.peixes OWNER TO postgres;
+
+--
+-- Name: repteis; Type: VIEW; Schema: zoo; Owner: postgres
+--
+
+CREATE VIEW zoo.repteis AS
+ SELECT a.nome,
+    ala.num_ala
+   FROM ((zoo.animais a
+     JOIN zoo.classe c ON ((c.id = a.classe)))
+     JOIN zoo.ala ala ON ((ala.classe = c.id)))
+  WHERE ((c.nome_da_classe)::text ~~* 'Repteis'::text);
+
+
+ALTER TABLE zoo.repteis OWNER TO postgres;
+
+--
 -- Data for Name: ala; Type: TABLE DATA; Schema: zoo; Owner: postgres
 --
 
 COPY zoo.ala (num_ala, classe) FROM stdin;
+1	1
 \.
 
 
@@ -311,6 +373,9 @@ COPY zoo.ala (num_ala, classe) FROM stdin;
 --
 
 COPY zoo.alimento (id, nome, fornecedor) FROM stdin;
+2	doggie	1
+3	doggie	1
+4	Roggie	1
 \.
 
 
@@ -318,7 +383,11 @@ COPY zoo.alimento (id, nome, fornecedor) FROM stdin;
 -- Data for Name: animais; Type: TABLE DATA; Schema: zoo; Owner: postgres
 --
 
-COPY zoo.animais (id, nome, classe, alimento, container, especie, altura, peso, responsavel) FROM stdin;
+COPY zoo.animais (id, nome, classe, alimento, container, especie, altura, peso, responsavel, foto_animal) FROM stdin;
+1	Urias	1	4	1	Humano	1,72	100kg	12	\N
+4	doggie	1	2	1	cavalo	1,90	90kg	12	\N
+3	DOGÃO	1	2	1	cavalo	1,90	90kg	12	\N
+2	OI	1	2	1	oi	12	11	12	\N
 \.
 
 
@@ -327,6 +396,7 @@ COPY zoo.animais (id, nome, classe, alimento, container, especie, altura, peso, 
 --
 
 COPY zoo.cargo (id, nome_cargo, salario) FROM stdin;
+1	Dono	1111111
 \.
 
 
@@ -335,6 +405,7 @@ COPY zoo.cargo (id, nome_cargo, salario) FROM stdin;
 --
 
 COPY zoo.classe (id, nome_da_classe, descricao) FROM stdin;
+1	Mamifero	Mama leite
 \.
 
 
@@ -342,7 +413,7 @@ COPY zoo.classe (id, nome_da_classe, descricao) FROM stdin;
 -- Data for Name: consulta; Type: TABLE DATA; Schema: zoo; Owner: postgres
 --
 
-COPY zoo.consulta (id, data, funcionarios, animal) FROM stdin;
+COPY zoo.consulta (id, data, funcionario, animal) FROM stdin;
 \.
 
 
@@ -351,6 +422,7 @@ COPY zoo.consulta (id, data, funcionarios, animal) FROM stdin;
 --
 
 COPY zoo.container (id, tipo, ala) FROM stdin;
+1	Jaula	1
 \.
 
 
@@ -359,6 +431,7 @@ COPY zoo.container (id, tipo, ala) FROM stdin;
 --
 
 COPY zoo.endereco (id, rua, numero, bairro, cep, uf) FROM stdin;
+1	2131	12	21212	12313	212
 \.
 
 
@@ -367,6 +440,7 @@ COPY zoo.endereco (id, rua, numero, bairro, cep, uf) FROM stdin;
 --
 
 COPY zoo.fornecedores (id, nome, endereco) FROM stdin;
+1	2131	1
 \.
 
 
@@ -374,7 +448,8 @@ COPY zoo.fornecedores (id, nome, endereco) FROM stdin;
 -- Data for Name: funcionarios; Type: TABLE DATA; Schema: zoo; Owner: postgres
 --
 
-COPY zoo.funcionarios (matricula, nome, formacao, cargo, rg, cpf, crmv, endereco, data_nascimento) FROM stdin;
+COPY zoo.funcionarios (matricula, nome, escolaridade, cargo, rg, cpf, crmv, endereco, data_nascimento) FROM stdin;
+12	Rogério	Superior	1	333333	222222222	111111	1	1995-09-15
 \.
 
 
@@ -382,7 +457,7 @@ COPY zoo.funcionarios (matricula, nome, formacao, cargo, rg, cpf, crmv, endereco
 -- Data for Name: limpeza; Type: TABLE DATA; Schema: zoo; Owner: postgres
 --
 
-COPY zoo.limpeza (funcionarios, container, data) FROM stdin;
+COPY zoo.limpeza (funcionario, container, data) FROM stdin;
 \.
 
 
@@ -463,7 +538,7 @@ ALTER TABLE ONLY zoo.container
 --
 
 ALTER TABLE ONLY zoo.limpeza
-    ADD CONSTRAINT limpeza_pk PRIMARY KEY (funcionarios, container, data);
+    ADD CONSTRAINT limpeza_pk PRIMARY KEY (funcionario, container, data);
 
 
 --
@@ -535,7 +610,7 @@ ALTER TABLE ONLY zoo.consulta
 --
 
 ALTER TABLE ONLY zoo.consulta
-    ADD CONSTRAINT consulta_fk FOREIGN KEY (funcionarios) REFERENCES zoo.funcionarios(matricula);
+    ADD CONSTRAINT consulta_fk FOREIGN KEY (funcionario) REFERENCES zoo.funcionarios(matricula);
 
 
 --
@@ -544,6 +619,14 @@ ALTER TABLE ONLY zoo.consulta
 
 ALTER TABLE ONLY zoo.container
     ADD CONSTRAINT container_fk FOREIGN KEY (ala) REFERENCES zoo.ala(num_ala);
+
+
+--
+-- Name: fornecedores fornecedores_fk; Type: FK CONSTRAINT; Schema: zoo; Owner: postgres
+--
+
+ALTER TABLE ONLY zoo.fornecedores
+    ADD CONSTRAINT fornecedores_fk FOREIGN KEY (endereco) REFERENCES zoo.endereco(id);
 
 
 --
@@ -567,7 +650,7 @@ ALTER TABLE ONLY zoo.funcionarios
 --
 
 ALTER TABLE ONLY zoo.limpeza
-    ADD CONSTRAINT limpeza_fk FOREIGN KEY (funcionarios) REFERENCES zoo.funcionarios(matricula);
+    ADD CONSTRAINT limpeza_fk FOREIGN KEY (funcionario) REFERENCES zoo.funcionarios(matricula);
 
 
 --

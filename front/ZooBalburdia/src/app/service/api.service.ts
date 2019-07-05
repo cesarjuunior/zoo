@@ -7,6 +7,7 @@ import {Alimento} from '../alimento/alimento';
 import {Funcionario} from '../funcionarios/funcionario';
 import {Container} from "../animais/container";
 import {Classe} from "../animais/classe";
+import {Foto} from "../animais/foto";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})

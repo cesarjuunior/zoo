@@ -1,29 +1,21 @@
-// @ts-ignore
 import { Component, OnInit } from '@angular/core';
-import {Animal} from '../animal';
-import {ApiService} from '../../service/api.service';
-import {MessageService, SelectItem} from 'primeng/api';
-import {DropdownUtils} from '../../util/dropdown.utils';
-import {Router} from '@angular/router';
-
-interface City {
-  name: string;
-  code: string;
-}
+import {Animal} from '../../animal';
+import {ApiService} from '../../../service/api.service';
+import {SelectItem} from 'primeng/api';
+import {DropdownUtils} from '../../../util/dropdown.utils';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create-animal.component.html',
-  styleUrls: ['./create-animal.component.css']
+  selector: 'app-modo-edicao',
+  templateUrl: './modo-edicao.component.html',
+  styleUrls: ['./modo-edicao.component.css']
 })
-export class CreateAnimalComponent implements OnInit {
+export class ModoEdicaoComponent implements OnInit {
 
   constructor(private apiService: ApiService,
-              private router: Router,
-              private messageService: MessageService) {
+              private activatedRoute: ActivatedRoute,
+              private router : Router) {
   }
-
-  uploadedFiles: any[] = [];
 
   animal: Animal = new Animal();
 
@@ -31,8 +23,16 @@ export class CreateAnimalComponent implements OnInit {
   containers: SelectItem[] = [];
   classes: SelectItem[] = [];
   responsaveis: SelectItem[] = [];
+  id: any;
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe(params => {
+      this.id = params.id;
+      this.apiService.getAnimal(params.id).subscribe(resultado => {
+        this.animal = resultado;
+        console.log(this.animal);
+      });
+    });
     this.preecherAlimentos();
     this.preecherContainers();
     this.preecherClasse();
@@ -40,9 +40,7 @@ export class CreateAnimalComponent implements OnInit {
   }
 
   salvar() {
-    console.log('%%%%%%%%%%%%%%%%%%%%%%%%');
-    console.log(this.uploadedFiles);
-    this.apiService.adicionaAnimal(this.animal).subscribe(res => {
+    this.apiService.atualizaAnimal(this.id, this.animal).subscribe(res => {
       this.router.navigate(['/listAnimal']);
     });
   }
@@ -52,6 +50,7 @@ export class CreateAnimalComponent implements OnInit {
       this.alimentos.push(...DropdownUtils.buildDropDown('nome', 'id', res));
     });
   }
+
 
   preecherContainers() {
     this.containers = [{ label: '', value: null }];

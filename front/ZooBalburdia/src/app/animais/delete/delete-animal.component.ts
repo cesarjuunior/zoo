@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../../service/api.service';
 import {Animal} from '../animal';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-delete',
@@ -10,7 +11,8 @@ import {Animal} from '../animal';
 })
 export class DeleteAnimalComponent implements OnInit {
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService,
+              private router: Router) { }
 
   animais: Animal[];
 
@@ -20,7 +22,9 @@ export class DeleteAnimalComponent implements OnInit {
 
   excluir(item) {
     console.log(item[8]);
-    this.apiService.excluiAnimal(item[8]).subscribe();
+    this.apiService.excluiAnimal(item[8]).subscribe(res => {
+      this.router.navigate(['/listAnimal']);
+    });
     this.listarAnimais();
     window.location.reload();
 

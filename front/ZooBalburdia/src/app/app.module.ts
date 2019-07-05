@@ -8,10 +8,10 @@ import {PanelModule} from 'primeng/panel';
 import {
   ButtonModule,
   CalendarModule,
-  DropdownModule,
+  DropdownModule, FileUploadModule,
   InputMaskModule,
   InputTextModule,
-  MenubarModule,
+  MenubarModule, MessageService,
   PanelMenuModule, SharedModule,
   TabMenuModule
 } from 'primeng/primeng';
@@ -40,6 +40,7 @@ import {FormsModule} from "@angular/forms";
 import {TableModule} from "primeng/table";
 import {HttpClientModule} from '@angular/common/http';
 import {ApiService} from './service/api.service';
+import { ModoEdicaoComponent } from './animais/edit/modo-edicao/modo-edicao.component';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import {ApiService} from './service/api.service';
     ListFuncionariosComponent,
     EditFuncionariosComponent,
     DeleteFuncionariosComponent,
+    ModoEdicaoComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,9 +85,10 @@ import {ApiService} from './service/api.service';
     CalendarModule,
     TableModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    FileUploadModule,
   ],
-  providers: [ApiService],
+  providers: [ApiService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

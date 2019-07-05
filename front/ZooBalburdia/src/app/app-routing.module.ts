@@ -22,6 +22,7 @@ import {CreateFuncionariosComponent} from './funcionarios/create/create-funciona
 import {ListFuncionariosComponent} from './funcionarios/list/list-funcionarios.component';
 import {DeleteFuncionariosComponent} from './funcionarios/delete/delete-funcionarios.component';
 import {EditFuncionariosComponent} from './funcionarios/edit/edit-funcionarios.component';
+import {ModoEdicaoComponent} from "./animais/edit/modo-edicao/modo-edicao.component";
 
 const routes: Routes = [
   { path: 'menu', component: MenuComponent },
@@ -48,7 +49,10 @@ const routes: Routes = [
   { path: 'createFuncionario', component: CreateFuncionariosComponent },
   { path: 'listFuncionario', component:  ListFuncionariosComponent },
   { path: 'deleteFuncionario', component: DeleteFuncionariosComponent },
-  { path: 'editFuncionario', component: EditFuncionariosComponent }
+  { path: 'editFuncionario', component: EditFuncionariosComponent },
+
+  { path: 'modoEdicao/:id', component: ModoEdicaoComponent }
+
 
 ];
 

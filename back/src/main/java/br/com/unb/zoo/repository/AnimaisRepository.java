@@ -47,4 +47,7 @@ public interface AnimaisRepository extends JpaRepository<Animais, Long> {
     @Transactional
     @Query(value = "delete from zoo.animais where id =:id", nativeQuery = true)
     void exlcuir(@Param("id") long id);
+
+    @Query(value = "SELECT max(a.id) from zoo.animais as a ", nativeQuery = true)
+    Integer buscarMaiorId();
 }

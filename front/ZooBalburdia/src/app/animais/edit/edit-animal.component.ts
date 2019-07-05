@@ -2,6 +2,7 @@
 import { OnInit, Component } from '@angular/core';
 import {ApiService} from '../../service/api.service';
 import {Animal} from '../animal';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-edit',
@@ -11,18 +12,20 @@ import {Animal} from '../animal';
 export class EditAnimalComponent implements OnInit {
 
   animal: Animal = new Animal();
-
   animais: Animal[];
 
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService,
+              private router: Router) { }
 
   ngOnInit() {
     this.listarAnimais();
   }
 
-  editar() {
-    this.apiService.atualizaAnimal(1, this.animal).subscribe();
+  editar(item) {
+    this.router.navigate(['/modoEdicao', item[8]]);
+
+    // this.apiService.atualizaAnimal(1, this.animal).subscribe();
   }
   listarAnimais() {
     this.apiService.getAnimais().subscribe(resultado => {

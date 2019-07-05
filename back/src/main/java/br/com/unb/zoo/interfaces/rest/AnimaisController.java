@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping({"/animais"})
 public class AnimaisController {
@@ -41,8 +42,13 @@ public class AnimaisController {
     @CrossOrigin
     @PostMapping
     public void create(@RequestBody Animais animais){
-        List <Animais> animais1 = repository.findAll();
-        long id = animais1.size() + 1;
+        Integer animais1 = repository.buscarMaiorId();
+        long id;
+        if(animais1 == null){
+            id = 1;
+        }else{
+            id = animais1 + 1;
+        }
         animais.setId(id);
         repository.salvar(animais.getId(), animais.getNome(), animais.getClasse().getId(), animais.getAlimento().getId(),
                 animais.getContainer().getId(), animais.getEspecie(), animais.getAltura(), animais.getPeso(),

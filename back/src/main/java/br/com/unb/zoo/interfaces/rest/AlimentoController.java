@@ -35,14 +35,14 @@ public class AlimentoController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity update(@PathVariable("id") Long id, @RequestBody Alimento alimento){
-        return repository.findById(id)
+    public void update(@PathVariable("id") Long id, @RequestBody Alimento alimento){
+         repository.findById(id)
                 .map(record -> {
                     record.setFornecedor(alimento.getFornecedor());
                     record.setNome(alimento.getNome());
-                    Alimento updaded = repository.save(record);
-                    return ResponseEntity.ok().body(updaded);
-                }).orElse(ResponseEntity.notFound().build());
+                    repository.alterar(record.getId(), record.getNome(), record.getFornecedor().getId());
+                    return 0;
+                });
     }
 
     @DeleteMapping(path ={"/{id}"})

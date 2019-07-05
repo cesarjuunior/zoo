@@ -1,7 +1,6 @@
 package br.com.unb.zoo.repository;
 
 import br.com.unb.zoo.domain.Alimento;
-import br.com.unb.zoo.domain.model.ator.Ator;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -28,4 +27,9 @@ public interface AlimentoRepository extends JpaRepository<Alimento, Long> {
     @Modifying
     @Query(value = "DELETE FROM zoo.animais WHERE id = :id;", nativeQuery = true)
     void excluir(@Param("id") Long id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE zoo.alimento SET nome = :nome, fornecedor = :idFornecedor WHERE id = :id", nativeQuery = true)
+    void alterar(@Param("id") Long id, @Param("nome") String nome, @Param("idFornecedor") Long idFornecedor);
 }

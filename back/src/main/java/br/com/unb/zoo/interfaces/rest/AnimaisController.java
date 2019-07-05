@@ -1,5 +1,6 @@
 package br.com.unb.zoo.interfaces.rest;
 
+import br.com.unb.zoo.domain.Alimento;
 import br.com.unb.zoo.domain.Animais;
 import br.com.unb.zoo.repository.AnimaisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,26 +17,28 @@ public class AnimaisController {
     private AnimaisRepository repository;
 
     @GetMapping
-    public List findAll(){
-        return repository.findAll();
+    public List<Object> findAll(){
+        return repository.buscarTodos();
     }
 
     @GetMapping(path = {"/{id}"})
-    public ResponseEntity findById(@PathVariable Long id){
-        return  repository.findById(id)
-                .map(record -> ResponseEntity.ok().body(record))
-                .orElse(ResponseEntity.notFound().build());
-
+    public Animais findById(@PathVariable Long id){
+        return  repository.buscarUm(id);
     }
 
     @PostMapping
-    public Animais create(@RequestBody Animais animais){
-        return repository.save(animais);
+    public void create(@RequestBody Animais animais){
+        List <Animais> animais1 = repository.findAll();
+        long id = animais1.size() + 1;
+        animais.setId(id);
+        repository.salvar(animais.getId(), animais.getNome(), animais.getClasse().getId(), animais.getAlimento().getId(),
+                animais.getContainer().getId(), animais.getEspecie(), animais.getAltura(), animais.getPeso(),
+                animais.getResponsavel().getMatricula());
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity update(@PathVariable("id") Long id, @RequestBody Animais animais){
-        return repository.findById(id)
+    public void update(@PathVariable("id") Long id, @RequestBody Animais animais){
+        repository.findById(id)
                 .map(record -> {
                     record.setAlimento(animais.getAlimento());
                     record.setAltura(animais.getAltura());
@@ -45,17 +48,13 @@ public class AnimaisController {
                     record.setNome(animais.getNome());
                     record.setPeso(animais.getPeso());
                     record.setResponsavel(animais.getResponsavel());
-                    Animais updaded = repository.save(record);
-                    return ResponseEntity.ok().body(updaded);
-                }).orElse(ResponseEntity.notFound().build());
+                    repository.alterar(record.getId(),record.getAlimento().getId(), record.getAltura(), record.getClasse().getId(), record.getContainer().getId(),record.getEspecie(), record.getNome(), record.getPeso(), record.getResponsavel().getMatricula());
+                    return 0;
+                });
     }
 
     @DeleteMapping(path ={"/{id}"})
-    public ResponseEntity<?> delete(@PathVariable long id) {
-        return repository.findById(id)
-                .map(record -> {
-                    repository.deleteById(id);
-                    return ResponseEntity.ok().build();
-                }).orElse(ResponseEntity.notFound().build());
+    public void delete(@PathVariable long id) {
+        repository.exlcuir(id);
     }
 }

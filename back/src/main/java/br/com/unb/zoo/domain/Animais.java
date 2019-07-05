@@ -16,7 +16,6 @@ public class Animais {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue
     private Long id;
 
     @Column(name="nome")

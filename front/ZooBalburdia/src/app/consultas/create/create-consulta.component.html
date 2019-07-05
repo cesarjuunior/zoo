@@ -1,0 +1,28 @@
+<p-panel header="Crie uma consulta" [toggleable]="true">
+  <div class="ui-g">
+    <div class="ui-g-3">
+      <div>
+        <label style="font-size: 15px" ><b>Data</b></label>
+      </div>
+      <p-calendar [(ngModel)]="value" dateFormat="dd/mm/yy"></p-calendar>
+    </div>
+    <div class="ui-g-3">
+      <div>
+        <label style="font-size: 15px" ><b>Funcionário</b></label>
+      </div>
+      <input type="text" pInputText/>
+    </div>
+    <div class="ui-g-3">
+      <div>
+        <label style="font-size: 15px" ><b>Animal</b></label>
+      </div>
+      <input type="text" pInputText/>
+    </div>
+  </div>
+  <div class="ui-g">
+    <div class="ui-g-3">
+      <button pButton type="button" label="Salvar" class="ui-button-success"></button>
+    </div>
+  </div>
+
+</p-panel>

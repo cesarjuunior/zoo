@@ -1,0 +1,30 @@
+<p-panel header="Editar um amiguinho" [toggleable]="true">
+  <div class="ui-g">
+    <p-table [value]="cars">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Nome</th>
+          <th>Espécie</th>
+          <th>Altura</th>
+          <th>Peso</th>
+          <th>Alimento</th>
+          <th>Container</th>
+          <th>Classe</th>
+          <th>Responsável</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-car>
+        <tr>
+          <td>{{car.vin}}</td>
+          <td>{{car.year}}</td>
+          <td>{{car.brand}}</td>
+          <td>{{car.color}}</td>
+          <td>{{car.color}}</td>
+          <td>{{car.color}}</td>
+          <td>{{car.color}}</td>
+          <td>{{car.color}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</p-panel>

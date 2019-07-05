@@ -5,6 +5,8 @@ import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {Alimento} from '../alimento/alimento';
 import {Funcionario} from '../funcionarios/funcionario';
+import {Container} from "../animais/container";
+import {Classe} from "../animais/classe";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -133,6 +135,7 @@ export class ApiService {
       );
   }
 
+
   getOneFuncionario(id: number): Observable<Funcionario> {
     const url = `${urlFuncionario}/${id}`;
     return this.http.get<Funcionario>(url).pipe(
@@ -217,6 +220,24 @@ export class ApiService {
   }
 */
 
+  getContainers(): Observable<Container[]> {
+    console.log('e pra ir');
+    return this.http.get<Container[]>(urlAnimais + '/containers')
+      .pipe(
+        tap(conta => console.log('leu os produtos')),
+        catchError(this.handleError('getProdutos', []))
+      );
+  }
+
+
+  getClasses(): Observable<Classe[]> {
+    console.log('e pra ir');
+    return this.http.get<Classe[]>(urlAnimais + '/classes')
+      .pipe(
+        tap(conta => console.log('leu os produtos')),
+        catchError(this.handleError('getProdutos', []))
+      );
+  }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

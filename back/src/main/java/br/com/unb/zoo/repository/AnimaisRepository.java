@@ -16,7 +16,7 @@ import java.util.List;
 public interface AnimaisRepository extends JpaRepository<Animais, Long> {
 
 
-    @Query(value = "select a.nome, a.especie, a.altura, a.peso, al.nome as meupau, c.tipo, cl.nome_da_classe, r.nome as meuovo from zoo.animais as a " +
+    @Query(value = "select a.nome, a.especie, a.altura, a.peso, al.nome as meupau, c.tipo, cl.nome_da_classe, r.nome as meuovo, a.id from zoo.animais as a " +
             "join zoo.alimento as al on a.alimento = al.id " +
             "join zoo.container as c on a.container = c.id " +
             "join zoo.classe as cl on a.classe = cl.id " +

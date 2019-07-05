@@ -12,12 +12,22 @@ export class EditAnimalComponent implements OnInit {
 
   animal: Animal = new Animal();
 
+  animais: Animal[];
+
+
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+    this.listarAnimais();
   }
 
   editar() {
-    this.apiService.atualizaAnimal(null, this.animal).subscribe();
+    this.apiService.atualizaAnimal(1, this.animal).subscribe();
+  }
+  listarAnimais() {
+    this.apiService.getAnimais().subscribe(resultado => {
+      this.animais = resultado;
+      console.log(this.animais);
+    });
   }
 }

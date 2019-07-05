@@ -29,20 +29,18 @@
   <div class="ui-g">
     <div class="ui-g-3">
       <div>
-        <label style="font-size: 15px"><b>Alimento</b></label>
+        <label style="font-size: 15px" ><b>Alimento</b></label>
       </div>
-      <div style="margin-top: 15px">
-        <p-dropdown [options]="cities" [(ngModel)]="selectedCity" placeholder="Selecione Alimento" optionLabel="name"
-                    [showClear]="true"></p-dropdown>
+      <div style="margin-top: 15px" [ngClass]="{'filled': animal.alimento.id}">
+        <p-dropdown [options]="alimentos"  [(ngModel)]="animal.alimento.id" placeholder="Selecione Alimento"></p-dropdown>
       </div>
     </div>
     <div class="ui-g-3">
       <div>
         <label style="font-size: 15px"><b>Contaianer</b></label>
       </div>
-      <div style="margin-top: 15px">
-        <p-dropdown [options]="cities" [(ngModel)]="selectedCity" placeholder="Selecione o Container" optionLabel="name"
-                    [showClear]="true"></p-dropdown>
+      <div style="margin-top: 15px" [ngClass]="{'filled': animal.container.id}">
+        <p-dropdown [options]="containers" [(ngModel)]="animal.container.id" placeholder="Selecione o Container" [showClear]="true"></p-dropdown>
       </div>
     </div>
 
@@ -50,20 +48,16 @@
       <div>
         <label style="font-size: 15px"><b>Tipo da classe</b></label>
       </div>
-      <div style="margin-top: 15px">
-        <p-dropdown [options]="cities" [(ngModel)]="selectedCity" placeholder="Selecione classe" optionLabel="name"
-                    [showClear]="true"></p-dropdown>
+      <div style="margin-top: 15px" [ngClass]="{'filled': animal.classe.id}">
+        <p-dropdown [options]="classes" [(ngModel)]="animal.classe.id" placeholder="Selecione classe" [showClear]="true"></p-dropdown>
       </div>
     </div>
     <div class="ui-g-3">
       <div>
         <label style="font-size: 15px"><b>Responsável</b></label>
       </div>
-      <div style="margin-top: 15px">
-
-        <p-dropdown [options]="cities" [(ngModel)]="selectedCity" placeholder="Selecione o Responsável"
-                    optionLabel="name"
-                    [showClear]="true"></p-dropdown>
+      <div style="margin-top: 15px" [ngClass]="{'filled': animal.responsavel.matricula}">
+        <p-dropdown [options]="responsaveis" [(ngModel)]="animal.responsavel.matricula" placeholder="Selecione o Responsável" [showClear]="true"></p-dropdown>
       </div>
     </div>
   </div>

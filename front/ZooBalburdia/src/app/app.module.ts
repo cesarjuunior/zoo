@@ -12,7 +12,7 @@ import {
   InputMaskModule,
   InputTextModule,
   MenubarModule,
-  PanelMenuModule,
+  PanelMenuModule, SharedModule,
   TabMenuModule
 } from 'primeng/primeng';
 import {MenuComponent} from './menu/menu.component';
@@ -82,7 +82,8 @@ import {ApiService} from './service/api.service';
     FormsModule,
     CalendarModule,
     TableModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
